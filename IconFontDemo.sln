@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconFontDemo.Android", "Ico
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconFontDemo.iOS", "IconFontDemo\IconFontDemo.iOS\IconFontDemo.iOS.csproj", "{27FCEC33-F9D5-407C-8C3F-48C75FF4B235}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconFontDemo", "IconFontDemo\IconFontDemo\IconFontDemo.csproj", "{A4CC909E-0561-4691-B300-5442678A50FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IconFontDemo", "IconFontDemo\IconFontDemo\IconFontDemo.csproj", "{A4CC909E-0561-4691-B300-5442678A50FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74DDCD35-8DD1-42B7-B726-0ADED134A072}"
 	ProjectSection(SolutionItems) = preProject

@@ -47,11 +47,11 @@
                 <FormattedString>
                     <Span
                         FontFamily="MaterialFontFamily"
-                        Text="{StaticResource IconShare}"
+                        Text="{StaticResource IconDownload}"
                         FontSize="Medium"/>
                     <Span Text=" " />
                     <Span
-                        Text="Share"
+                        Text="Download"
                         FontSize="Medium"/>
                 </FormattedString>
             </Label.FormattedText>
