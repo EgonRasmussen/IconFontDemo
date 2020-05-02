@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:icons="clr-namespace:IconFontDemo.Fonts"
+             mc:Ignorable="d"
+             x:Class="IconFontDemo.MainPage">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="42" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        </Style>
+
+        <!--Local Icon resources-->
+        <x:String x:Key="IconPlayCircleOutline">&#xf005a;</x:String>
+        <x:String x:Key="IconPlay">&#xf040a;</x:String>
+        <x:String x:Key="IconPause">&#xf03e4;</x:String>
+        <x:String x:Key="IconDownload">&#xf01da;</x:String>
+        <x:String x:Key="IconUpNext">&#xf0b8d;</x:String>
+        <x:String x:Key="IconMarkPlayed">&#xf0134;</x:String>
+        <x:String x:Key="IconArchived">&#xf003c;</x:String>
+        <x:String x:Key="IconShare">&#xf0497;</x:String>
+        <x:String x:Key="IconAbout">&#xf02fd;</x:String>
+        <x:String x:Key="IconTwitter">&#xf0544;</x:String>
+        <x:String x:Key="IconMedia">&#xf040b;</x:String>
+        <x:String x:Key="IconSettings">&#xf08ba;</x:String>
+        <x:String x:Key="IconBlog">&#xf046b;</x:String>
+        <x:String x:Key="IconClose">&#xf0156;</x:String>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <!-- Custom font -->
+        <Label Text="Welcome to Xamarin.Forms!"
+               FontFamily="Samantha" />
+
+        <!--Icon font-->
+        <Label FontFamily="MaterialFontFamily" 
+               Text="&#xf0002;" />
+
+        <Label FontFamily="MaterialFontFamily" 
+               Text="{StaticResource IconTwitter}" />
+
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span
+                        FontFamily="MaterialFontFamily"
+                        Text="{StaticResource IconShare}"
+                        FontSize="Medium"/>
+                    <Span Text=" " />
+                    <Span
+                        Text="Share"
+                        FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+
+        <Button FontFamily="MaterialFontFamily"  
+                Text="{StaticResource IconPlay}"              
+                FontSize="42"
+                WidthRequest="200"
+                VerticalOptions="CenterAndExpand"  
+                HorizontalOptions="Center" />
+
+        <Image
+            HeightRequest="42"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+            <Image.Source>
+                <FontImageSource
+                    FontFamily="MaterialFontFamily"
+                    Glyph="{StaticResource IconDownload}"                
+                    Size="42" Color="Black" />
+            </Image.Source>
+        </Image>
+
+        <!--Material Design Icon resources from IconFont class -->
+        <Label FontFamily="MaterialFontFamily" 
+               Text="{x:Static icons:IconFont.Microphone}" />
+
+        <!--Button with Icon, Text and styling-->
+        <Frame CornerRadius="10" BackgroundColor="#485460" HorizontalOptions="CenterAndExpand" VerticalOptions="End" 
+               Margin="0,0,0,20"  HeightRequest="50" WidthRequest="140" OutlineColor="Red" HasShadow="True" Padding="0" >
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{x:Static icons:IconFont.Music}"
+                    FontFamily="MaterialFontFamily"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontAttributes="None"
+                    Margin="5,0,0,0"     
+                    TextColor="White" />
+                <Label Text="Austin Tour" FontSize="20"  TextColor="White"  HorizontalOptions="End" VerticalOptions="Center" />
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenTour}"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+    </StackLayout>
+
+</ContentPage>
