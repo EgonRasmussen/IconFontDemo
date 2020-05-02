@@ -137,6 +137,11 @@ Til sidst vises et eksempel på hvordan man kan lave en "button", som kan styles:
             </Frame.GestureRecognizers>
         </Frame>
 ```
+
+&nbsp;
+
+#### Resultat
+
 Her ses hvordan ovenstående eksempler ser ud på skærmen:
 
 ![Samlet](Samlet.png)
