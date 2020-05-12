@@ -1,10 +1,12 @@
 # Custom Font og IconFont som Embedded resource
 
-> [Embedded Fonts: Custom Fonts in Xamarin.Forms](https://devblogs.microsoft.com/xamarin/embedded-fonts-xamarin-forms/)
+> [Xamarin.Forms Custom Fonts Simplified & Everywhere](https://montemagno.com/xamarin-forms-custom-fonts-everywhere/)
 >
 > [Fonts in Xamarin.Forms](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/text/fonts)
 > 
 > [Icon font to Code](https://andreinitescu.github.io/IconFont2Code/)
+> 
+> [Cheatsheet for FontAwesome](https://fontawesome.com/v4.7.0/cheatsheet/)
 
 Icon fonts kan hentes her:
 > 
@@ -12,25 +14,18 @@ Icon fonts kan hentes her:
 > 
 > [Font Awesome](https://fontawesome.com/)
 
-Artikler om ældre måder at benytte IconFonts på, men indeholder vejledning om hvordan man henter font og lignende. Men måden at benytte 
-IconFont på er forældet fra Xamarin.Forms 4.5. Og fra version 4.6 virker det rent faktisk!
-
-[Use FontAwesome in a Xamarin.Forms app](https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/text/fonts)
-
-[Cheatsheet](https://fontawesome.com/v4.7.0/cheatsheet/)
-
-[Using Font Icons in Xamarin.Forms: Goodbye Images, Hello Fonts!](https://montemagno.com/using-font-icons-in-xamarin-forms-goodbye-images-hello-fonts/)
-
+**Kommende NuGet pakke, med komplet løsning:**
+[Icon Fonts made Easy (Dan Siegel)](https://dansiegel.net/post/2020/05/07/icon-fonts-made-easy)
 
 &nbsp;
 ### 1. Add the font file (otf or ttf) to your shared project and mark it as embedded resource
-I folderen Fonts ses en almindelig font: Samantha.ttf og en iconFont: materialdesignicons-webfont.ttf.
+I folderen Fonts ses en almindelig font: `Samantha.ttf` og en iconFont: `materialdesignicons-webfont.ttf`, samt nogle FontAwesome fonte.
 
 *Build Action* sættes til **Embedded resource**.
 
 &nbsp;   
 ### 2. Add ExportFont attribute in your shared project
-I App.xaml.cs, oven over namespace, tilføjes følgende instruktion til assembleren:
+I `AssemblyInfo.cs` (eller App.xaml.cs oven over namespace), tilføjes følgende instruktion til assembleren:
 ```csharp
 [assembly: ExportFont("Samantha.ttf")]
 [assembly: ExportFont("materialdesignicons-webfont.ttf", Alias = "MaterialFontFamily")]
@@ -52,7 +47,7 @@ Her ses resultatet:
 
 #### Icon Font
 Udfordringen er at finde den korrekte kode for et ikon. Her benyttes værktøjet: [IconFont2Code](https://andreinitescu.github.io/IconFont2Code/)
-Når man åbner font-filen vha. værktøjet, kan man finde UniCode. Et af de første ikoner, access-point-network, har koden: `\U000f0002`. Den skal
+Når man åbner font-filen vha. værktøjet, kan man finde UniCode. Et af de første ikoner, *access-point-network*, har koden: `\U000f0002`. Den skal
 imidlertid escapes for at kunne benyttes af XAML og kommer til at hedde: `&#xf0002;`:
 
 **Label**
@@ -61,7 +56,7 @@ imidlertid escapes for at kunne benyttes af XAML og kommer til at hedde: `&#xf00
        Text="&#xf0002;" />
 ```
 
-Ofte vil man definere et ikon som en resource, her i Page.Content:
+Ofte vil man definere et ikon som en resource, her i `Page.Content`:
 ```xml
 <ContentPage.Resources>
     <x:String x:Key="IconTwitter">&#xf0544;</x:String>

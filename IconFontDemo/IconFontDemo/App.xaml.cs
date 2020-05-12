@@ -1,7 +1,5 @@
 ﻿using Xamarin.Forms;
 
-[assembly: ExportFont("Samantha.ttf")]
-[assembly: ExportFont("materialdesignicons-webfont.ttf", Alias = "MaterialFontFamily")]
 namespace IconFontDemo
 {
     public partial class App : Application
