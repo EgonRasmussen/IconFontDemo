@@ -1,4 +1,4 @@
-﻿namespace IconFontDemo.Fonts
+﻿namespace MaterialDesign
 {
 	public static class IconFont
 	{

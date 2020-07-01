@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:icons="clr-namespace:IconFontDemo.Fonts"
+             xmlns:mdicons="clr-namespace:MaterialDesign"
+             xmlns:faicons="clr-namespace:FontAwesome"
              mc:Ignorable="d"
              x:Class="IconFontDemo.MainPage">
     <ContentPage.Resources>
@@ -35,29 +36,26 @@
         <Label Text="Welcome to Xamarin.Forms!"
                FontFamily="Samantha" />
 
-        <!--Icon font-->
+        <!--Icon font med Unicode-->
         <Label FontFamily="MaterialFontFamily" 
                Text="&#xf0002;" />
 
+        <!--Icon font med StaticResource-->
         <Label FontFamily="MaterialFontFamily" 
                Text="{StaticResource IconTwitter}" />
 
-        <Label>
+        <!--Icon font kombineret med Text-->
+        <Label  FontFamily="MaterialFontFamily" FontSize="Medium">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span
-                        FontFamily="MaterialFontFamily"
-                        Text="{StaticResource IconDownload}"
-                        FontSize="Medium"/>
+                    <Span Text="{StaticResource IconDownload}"/>
                     <Span Text=" " />
-                    <Span
-                        Text="Download"
-                        FontSize="Medium"/>
+                    <Span Text="Download"/>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
 
-
+        <!--Icon font på en Button-->
         <Button FontFamily="MaterialFontFamily"  
                 Text="{StaticResource IconPlay}"              
                 FontSize="42"
@@ -65,6 +63,7 @@
                 VerticalOptions="CenterAndExpand"  
                 HorizontalOptions="Center" />
 
+        <!--Icon font på en Button-->
         <Image
             HeightRequest="42"
             HorizontalOptions="Center"
@@ -77,15 +76,21 @@
             </Image.Source>
         </Image>
 
-        <!--Material Design Icon resources from IconFont class -->
-        <Label FontFamily="MaterialFontFamily" 
-               Text="{x:Static icons:IconFont.Microphone}" />
+        
+    <!--Material Design Icon resources from IconFont class -->
+    <Label FontFamily="MaterialFontFamily" 
+            Text="{x:Static mdicons:IconFont.Microphone}" />
 
+    <!--Font Awesome Icon resources from IconFont class -->
+    <Label FontFamily="FA-solid" 
+            Text="{x:Static faicons:IconFont.Microphone}" />
+
+        
         <!--Button with Icon, Text and styling-->
         <Frame CornerRadius="10" BackgroundColor="#485460" HorizontalOptions="CenterAndExpand" VerticalOptions="End" 
                Margin="0,0,0,20"  HeightRequest="50" WidthRequest="140" OutlineColor="Red" HasShadow="True" Padding="0" >
             <StackLayout Orientation="Horizontal">
-                <Label Text="{x:Static icons:IconFont.Music}"
+                <Label Text="{x:Static mdicons:IconFont.Music}"
                     FontFamily="MaterialFontFamily"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"

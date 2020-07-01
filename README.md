@@ -19,9 +19,9 @@ Icon fonts kan hentes her:
 
 &nbsp;
 ### 1. Add the font file (otf or ttf) to your shared project and mark it as embedded resource
-I folderen Fonts ses en almindelig font: `Samantha.ttf` og en iconFont: `materialdesignicons-webfont.ttf`, samt nogle FontAwesome fonte.
+I folderen Fonts det sharede projekt ses en almindelig font: `Samantha.ttf` og en iconFont: `materialdesignicons-webfont.ttf`, samt nogle FontAwesome fonte.
 
-*Build Action* sættes til **Embedded resource**.
+*Build Action* sættes til **Embedded resource** for alle fonte.
 
 &nbsp;   
 ### 2. Add ExportFont attribute in your shared project
@@ -29,8 +29,12 @@ I `AssemblyInfo.cs` (eller App.xaml.cs oven over namespace), tilføjes følgende i
 ```csharp
 [assembly: ExportFont("Samantha.ttf")]
 [assembly: ExportFont("materialdesignicons-webfont.ttf", Alias = "MaterialFontFamily")]
+[assembly: ExportFont("Font-Awesome-5-Brands-Regular-400.otf", Alias = "FA-brands-regular")]
+[assembly: ExportFont("Font-Awesome-5-Free-Regular-400.otf", Alias = "FA-regular")]
+[assembly: ExportFont("Font-Awesome-5-Free-Solid-900.otf", Alias = "FA-solid")]
 ```
-Bemærk at man kan benytte et alias, men ellers er det filnavne, der angives.
+Bemærk at man kan benytte et alias, men ellers er det filnavne, der angives. Man behøver selvfølgelig kun at tage de fonte med, som
+man rent faktisk har brug for.
 
 &nbsp;
 
@@ -45,18 +49,20 @@ Her ses resultatet:
 
 ![Samantha](Samantha.png)
 
-#### Icon Font
+### Icon Font
 Udfordringen er at finde den korrekte kode for et ikon. Her benyttes værktøjet: [IconFont2Code](https://andreinitescu.github.io/IconFont2Code/)
 Når man åbner font-filen vha. værktøjet, kan man finde UniCode. Et af de første ikoner, *access-point-network*, har koden: `\U000f0002`. Den skal
 imidlertid escapes for at kunne benyttes af XAML og kommer til at hedde: `&#xf0002;`:
 
 **Label**
+
+Her er benyttet den "rå" Unicode:
 ```xml
 <Label FontFamily="MaterialFontFamily" 
        Text="&#xf0002;" />
 ```
 
-Ofte vil man definere et ikon som en resource, her i `Page.Content`:
+Ofte vil man definere et ikon som en resource, her i `Page.Content`. Men man kan også oprette en global resource i App.xaml:
 ```xml
 <ContentPage.Resources>
     <x:String x:Key="IconTwitter">&#xf0544;</x:String>
@@ -72,8 +78,26 @@ Her ses de to ikoner:
 
 ![Icon Font](IconFont.png)
 
+&nbsp;
+
+**Label med kombineret icon og tekst**
+```xml
+<Label  FontFamily="MaterialFontFamily" FontSize="Medium">
+    <Label.FormattedText>
+        <FormattedString>
+            <Span Text="{StaticResource IconDownload}"/>
+            <Span Text=" " />
+            <Span Text="Download"/>
+        </FormattedString>
+    </Label.FormattedText>
+</Label>
+```
+
+&nbsp;
+
 **Button**
-Her er tilføjet et ikon sammen med noget tekst. Teksten kan ikke sættes på i XAML og derfor gøres det i resource-definitionen:
+
+Her er tilføjet et ikon sammen med noget tekst:
 ```xml
 <Button FontFamily="MaterialFontFamily"  
         Text="{StaticResource IconPlay}"              
@@ -82,6 +106,8 @@ Her er tilføjet et ikon sammen med noget tekst. Teksten kan ikke sættes på i XAM
         VerticalOptions="CenterAndExpand"  
         HorizontalOptions="Center"/>
 ```
+
+&nbsp;
 
 **Image**
 Her ses et ikon samt en tekst anbragt i et image:
@@ -99,19 +125,38 @@ Her ses et ikon samt en tekst anbragt i et image:
 </Image>
 ```
 
-**Med en C# static class**
-Vha. IconFont2Code værktøjet kan man let generere en static C# klasse med de ikoner, man ønsker. I eksempel-projektet ligger 
-der en fil i Fonts-folderen, der hedder IconFont.cs.
+&nbsp;
 
-Man får fat i et ikon vha. `x:Static` og har man sat en `xmlns` op til at pege på Fonts-folderen, kan man browse sig frem:
+### Med en C# static class
+Skal man bruge flere ikoner kan det hurtigt blive et stort arbejde at lave ressourcerne.
+
+Vha. **IconFont2Code** værktøjet kan man let generere en static C# klasse med enten alle eller blot de ikoner man ønsker. I eksempel-projektet ligger 
+der to filer i Fonts-folderen:
+- **FAIconFont.cs** og som indeholder en static klasse `FontAwesome.IconFont` som indeholder alle ikoner fra *Font-Awesome-5-Free-Solid-900.otf*
+- **MDIconFont.cs** og som indeholder en static klasse `MaterialDesign.IconFont` som indeholder alle ikoner fra *materialdesignicons-webfont.ttf*
+
+
+Man får fat i et ikon vha. `x:Static` og har man sat et namespace `xmlns` op til at pege på font-klassens namespace, kan man browse sig frem:
+
 ```xml
-xmlns:icons="clr-namespace:IconFontDemo.Fonts"
+xmlns:mdicons="clr-namespace:MaterialDesign"
+xmlns:faicons="clr-namespace:FontAwesome"
 ....
 
+<!--Material Design Icon resources from IconFont class -->
 <Label FontFamily="MaterialFontFamily" 
-       Text="{x:Static icons:IconFont.Microphone}" />
+        Text="{x:Static mdicons:IconFont.Microphone}" />
+
+<!--Font Awesome Icon resources from IconFont class -->
+    <Label FontFamily="FA-solid" 
+        Text="{x:Static faicons:IconFont.Microphone}" />
 ```
 
+
+
+&nbsp;
+
+##### En stylet button
 Til sidst vises et eksempel på hvordan man kan lave en "button", som kan styles:
 ```xml
         <Frame CornerRadius="10" BackgroundColor="#485460" HorizontalOptions="CenterAndExpand" VerticalOptions="End" 
