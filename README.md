@@ -47,7 +47,7 @@ I View'et kan man benytte en Custom font således:
 ```
 Her ses resultatet:
 
-![Samantha](Samantha.png)
+![Samantha](images/Samantha.png)
 
 ### Icon Font
 Udfordringen er at finde den korrekte kode for et ikon. Her benyttes værktøjet: [IconFont2Code](https://andreinitescu.github.io/IconFont2Code/)
@@ -76,7 +76,7 @@ Og her benyttes resourcen:
 
 Her ses de to ikoner:
 
-![Icon Font](IconFont.png)
+![Icon Font](images/IconFont.png)
 
 &nbsp;
 
@@ -184,4 +184,4 @@ Til sidst vises et eksempel på hvordan man kan lave en "button", som kan styles:
 
 Her ses hvordan ovenstående eksempler ser ud på skærmen:
 
-![Samlet](Samlet.png)
+![Samlet](images/Samlet.png)
